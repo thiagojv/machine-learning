@@ -1,0 +1,17 @@
+- Gaussian Naive Bayes (GaussianNB)
+  - (+) Takes average of probability of some input to predit the output.
+  - (+) Prediction interpolates the observations
+  - (-) They lose efficiency in high dimensional spaces
+  - Applied on text classification (documents and spam detection)
+  
+- Decision Trees
+  - (+) Requires little data preparation
+  - (+) The cost of using the tree is logarithmic in the number of data points used to train the tree
+  - (+) Able to handle multi-output problems
+  - (+) The explanation for the condition is easily explained by boolean logic
+  - (-) Can create over-complex trees that do not generalise the data well
+  - (-) Concepts that are hard to learn because decision trees do not express them easily
+  - (-) Create biased trees if some classes dominate
+  - Guidance in the choice of a particular product based on customer features or preferences
+
+
