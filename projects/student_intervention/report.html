@@ -11876,14 +11876,16 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Calculate number of students</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="c1"># TODO: Calculate number of students</span>
 <span class="n">n_students</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># TODO: Calculate number of features</span>
-<span class="n">n_features</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># TODO: Calculate passing students</span>
 <span class="n">passed_data</span> <span class="o">=</span> <span class="n">student_data</span><span class="p">[</span><span class="s1">&#39;passed&#39;</span><span class="p">]</span>
@@ -11893,7 +11895,7 @@ div#notebook {
 <span class="n">n_failed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">passed_data</span> <span class="o">==</span> <span class="s1">&#39;no&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># TODO: Calculate graduation rate</span>
-<span class="n">grad_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n_passed</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_students</span>
+<span class="n">grad_rate</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_passed</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">//</span> <span class="n">n_students</span>
 
 <span class="c1"># Print the results</span>
 <span class="k">print</span> <span class="s2">&quot;Total number of students: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_students</span><span class="p">)</span>
@@ -11918,10 +11920,10 @@ div#notebook {
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Total number of students: 395
-Number of features: 31
+Number of features: 30
 Number of students who passed: 265
 Number of students who failed: 130
-Graduation rate of the class: 67.09%
+Graduation rate of the class: 67.00%
 </pre>
 </div>
 </div>
@@ -12186,17 +12188,25 @@ Testing set has 95 samples.
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <ul>
-<li><p>Ensemble Methods (Bagging, AdaBoost, Random Forest, Gradient Boosting)</p>
+<li><p>AdaBoostClassifier</p>
 <ul>
 <li>(+) Merge several simple classifiers and merging them to get one complex classifier, transforming a high classification error (less than 0.5) into a low error.</li>
 <li>(+) Agnostic to the learner</li>
-<li>(-) High variance training data can overfit model</li>
-<li>(-) Time expensive</li>
-<li>On Netflix challenge were used ensemble methods to improve the accuracy of predictions about how much someone is going to enjoy a movie based on their movie preferences (<a href="http://blog.echen.me/2011/10/24/winning-the-netflix-prize-a-summary/">http://blog.echen.me/2011/10/24/winning-the-netflix-prize-a-summary/</a>)</li>
-<li>Given we have a lot of features, I think we can use this method to reduce the error on classifing the student</li>
+<li>(+) It is fast</li>
+<li>(+) It is improved by misclassied by previous classifiers</li>
+<li>(+) Since the dataset doesn't appear to have noisy data or outliers, it has low chances of overfitting</li>
+<li><p>(+) Memory efficient</p>
+</li>
+<li><p>(-) Sensitive to noisy data and outliers</p>
+</li>
+<li><p>(-) High variance training data can overfit model</p>
+</li>
+<li><p>It is employed for supervised classification of land-cover categories of geostatistical data (<a href="http://ieeexplore.ieee.org/document/1522615/">http://ieeexplore.ieee.org/document/1522615/</a>)</p>
+</li>
+<li>Given we have a lot of features, with no evidence of noisy data or outliers, I think we can use this method to reduce the error on classifing the student</li>
 </ul>
 </li>
-<li><p>K-Nearest Neighbors (KNeighbors)</p>
+<li><p>KNeighborsClassifier</p>
 <ul>
 <li>(+) It is often successful in classification situations where the decision boundary is very irregular</li>
 <li>(+) For dense matrices, a large number of possible distance metrics are supported</li>
@@ -12207,14 +12217,15 @@ Testing set has 95 samples.
 <li>It was used on classification of heart diseases (<a href="https://arxiv.org/pdf/1508.02061.pdf">https://arxiv.org/pdf/1508.02061.pdf</a>)</li>
 </ul>
 </li>
-<li><p>Support Vector Machines (SVM)</p>
+<li><p>LinearSVC</p>
 <ul>
 <li>(+) Effective in high dimensional spaces</li>
 <li>(+) It is memory efficient</li>
+<li>(+) Scale better to large number of samples</li>
 <li>(-) Low efficiency on training</li>
 <li>(-) If the number of features is much greater than the number of samples, avoid over-fitting in choosing Kernel functions and regularization term is crucial.</li>
 <li>As data contains too many features, we can use this method to split data into areas by using kernel functions</li>
-<li>It can be used on eye and face detection (<a href="http://ieeexplore.ieee.org/document/1417525/">http://ieeexplore.ieee.org/document/1417525/</a>)</li>
+<li>Digit recognizer (<a href="http://www.pybloggers.com/2016/02/using-support-vector-machines-for-digit-recognition/">http://www.pybloggers.com/2016/02/using-support-vector-machines-for-digit-recognition/</a>)</li>
 </ul>
 </li>
 </ul>
