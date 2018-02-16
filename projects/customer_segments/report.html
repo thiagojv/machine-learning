@@ -12135,9 +12135,9 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>Customer 0 suggests that it is a deli because it spend more on food</li>
-<li>Customer 1 suggests that it is a restaurant because it sepend more on food, but in a larger proportion</li>
-<li>Customer 2 suggests that it is a market because spend most on grocery, detergents and paper and in a smaller proportion on food, but still in a substancial amount</li>
+<li>Customer 0 suggests that it is a snack bar because it spent above the mean on Fresh, Frozen and Delicatessen, and this suggests that its main product is based on food.</li>
+<li>Customer 1 suggests that it is a restaurant because it spent much above the mean on Fresh and Frozen and almost equal (89%) to the mean on Groceries.</li>
+<li>Since Customer 2 spent above the mean on less perishable products, as Groceries and Detergents_Paper, than on perishable products (Fresh, Milk and Delicatessen), suggests it is a retailer</li>
 </ul>
 
 </div>
@@ -13323,8 +13323,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 <p><strong>Answer:</strong></p>
 <ul>
 <li>Yes, there are some data points considered outliers in more than one feature. In exemple: 65, 66, 75, 128, 154</li>
-<li>I don't think so because it's an outlier in some features, so if these are removed, it can not influence other features that make sense.</li>
-<li>I added 154 to be removed as outlier because it is an outlier on 3 features, so it influences on half features.</li>
+<li>Since we have 6 features to consider in each Dimension, I don't think all these data points should be removed just because it is an outlier in just 1 or 2 features. Since in the sum of features, it will not bias in a way or another.</li>
+<li>I added 154 to be removed as outlier because it is an outlier on 3 features, so it influences on half features of our dataset, in this case, it can bias to a group. Since it is an outlier on 50% of features, and very near of (Q1 - step) on anothers it can be an input error.</li>
 </ul>
 
 </div>
@@ -13417,8 +13417,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>First: 0.4419 and Second: 0.2723</li>
-<li><p>Total variance of the first four principal components is 0.93</p>
+<li>Total variance for two principal components is 71.42%</li>
+<li><p>Total variance for four principal components is 93%</p>
 </li>
 <li><p>First dimension explains 44.19% of customers variance and represents those who spend more on Detergents_Paper, Grocery and Milk and less on Fresh, Frozen and Delicatessen. This component, intuitively, represents a market shop segment.</p>
 </li>
@@ -13685,7 +13685,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f0a653ca850&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f6171780c10&gt;</pre>
 </div>
 
 </div>
@@ -13778,7 +13778,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Apply your clustering algorithm of choice to the reduced data </span>
@@ -13865,7 +13865,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display the results of the clustering from implementation</span>
@@ -13915,7 +13915,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Inverse transform the centers</span>
@@ -14020,8 +14020,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>Cluster/Segment 0 represents market shop, who spend above the mean on Milk, Grocery and Detergents_Paper</li>
-<li>Cluster/Segment 1 represents smaller establishments (coffe shop, ice cream shop, snack bar) who spend smaller proportion, but mainly in Fresh, Grocery, Frozen and Milk</li>
+<li>Cluster/Segment 0 represents retailers, who spend above the mean on Milk, Grocery and Detergents_Paper</li>
+<li>Cluster/Segment 1 represents smaller establishments (coffe shop, ice cream shop, snack bar) who spend below the mean in all features, but spent more on Fresh, Grocery, Frozen and Milk</li>
 </ul>
 
 </div>
@@ -14042,7 +14042,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display the predictions</span>
@@ -14124,8 +14124,9 @@ Sample point 2 predicted to be in Cluster 0
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>We can not assume the change affects all customers equally, but I think those who can react positively are the ones who spend less on purchase (Cluster/Segment 1). Because, they can buy more to wait for the other day or they just can wait for the next delivery.
-Those who spend more on a purchase, can react negatively because they must have greater movements of goods, so they need a more frequently delivery.</p>
+<p>We can not assume the change affects all customers equally, but I think those who can react positively are the ones who spend less on purchase (Cluster/Segment 1) because, they can buy more to wait for the other day or they just can wait for the next delivery.</p>
+<p>Those who spend more on a purchase, can react negatively because they must have greater movements of goods, so they need a more frequently delivery.</p>
+<p>To prove this theory, the wholesale distributor can run an experiment, change the delivery service to 3 days a week, on half customers of each segment and test how customers in each segment will react to change and, based on this fact, change the delivery service for that segment that react positively on the experiment.</p>
 
 </div>
 </div>
@@ -14165,7 +14166,7 @@ Those who spend more on a purchase, can react negatively because they must have 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display the clustering results based on &#39;Channel&#39; data</span>
